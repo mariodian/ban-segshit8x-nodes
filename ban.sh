@@ -34,4 +34,4 @@ done
 
 echo Found and banned $COUNT nodes.
 
-rm -rf $NODES_FILE
+rm $NODES_FILE
