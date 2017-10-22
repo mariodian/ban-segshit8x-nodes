@@ -11,6 +11,5 @@ Run:
 
 ````
 cd ban-segshit8x-nodes   
-chmod u+x ban.sh   
 ./ban.sh
 ````
