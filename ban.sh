@@ -11,7 +11,7 @@ SNAPSHOT=`wget -qO- https://bitnodes.21.co/api/v1/snapshots/ | jq '.results[0] |
 # Download the list of currently connected nodes
 wget ${SNAPSHOT//\"} -O $NODES_FILE
 
-NODES=$(cat $NODES_FILE | jq -rcC '.nodes | to_entries | map([.key + .value[1]]) | .[]')
+NODES=$(cat $NODES_FILE | jq -r -c '.nodes | to_entries | map([.key + .value[1]]) | .[]')
 COUNT=0
 
 for NODE in ${NODES[@]}; do
