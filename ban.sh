@@ -2,7 +2,7 @@
 
 command -v jq >/dev/null 2>&1 || { echo >&2 "Please install \"jq\" first. Aborting."; exit 1; }
 
-NODES_FILE='/tmp/segshit-nodes.txt'
+NODES_FILE="`mktemp /tmp/segshit-nodes.XXXXXXXXXX`"
 BAN_TIME="5184000"
 
 # Download the latest nodes snapshot
