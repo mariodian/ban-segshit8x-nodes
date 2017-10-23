@@ -36,11 +36,10 @@ sudo cpan -i JSON::XS
 ````
 git clone https://github.com/mariodian/ban-segshit8x-nodes.git
 cd ban-segshit8x-nodes
-chmod u+x ban.sh ban.pl
 ````
 
 #### Run the bash script
-````
+```` 
 ./ban.sh
 ````
 
