@@ -14,6 +14,18 @@ function Get-ObjectMembers {
 # Script starts here.
 $BAN_TIME = 5184000;
 
+# Find install location of bitcoin binaries
+$REG_KEY_PATH = "REGISTRY::HKEY_CURRENT_USER\Software\Bitcoin Core (64-bit)"
+
+$regKey = Get-ItemProperty -Path $REG_KEY_PATH
+$bitcoinInstallDirectory = $regKey.Path
+$bitcoinCliPath = Join-Path $bitcoinInstallDirectory "\daemon\bitcoin-cli.exe"
+
+if (-not (Test-Path $bitcoinCliPath)) {
+    throw "Unable to find bitcoin installation directory"
+}
+
+
 # Download the latest nodes snapshot
 $request = "https://bitnodes.21.co/api/v1/snapshots";
 
@@ -38,7 +50,7 @@ Get-ObjectMembers  |
          
          # Call into bitcoin-cli and ban.
          $AllArgs = @('setban', $IP, 'add', $BAN_TIME)
-         & "C:\Program Files\Bitcoin\daemon\bitcoin-cli" $AllArgs
+         & $bitcoinCliPath $AllArgs
          
          $COUNT = $COUNT + 1
      } 
