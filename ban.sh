@@ -23,15 +23,13 @@ for NODE in ${NODES[@]}; do
     # IP exists
     if [[ ! -z $IP ]]; then
       # Ban node
-      $(bitcoin-cli setban ${IP%:*} "add" ${BAN_TIME})
-
-      echo "Found and banned SegShit8x node: $IP"
+      $(bitcoin-cli setban ${IP%:*} "add" ${BAN_TIME} 2&>/dev/null) && echo "Banned a new SegShit8x node: $IP" || echo "The following SegShit8x node has already been banned: $IP"
 
       ((COUNT++))
     fi
   fi
 done
 
-echo Found and banned $COUNT nodes.
+echo Found and banned $COUNT nodes in total.
 
 rm $NODES_FILE
